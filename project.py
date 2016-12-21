@@ -23,7 +23,7 @@ class Proj(object):
             <form method="get" action="enter">
               <p><input type="text" value="login" name="name" /></p>
               <p><input type="password" value="Password" name="password" /></p>
-              <p><button type="submit">Enter</button></p>
+              <p><button type="submit">Login</button></p>
             </form>
             <a href="./regPage">Don't have an account?</a>
            """ + Proj.footer
@@ -38,10 +38,10 @@ class Proj(object):
     def regPage(self):
         return Proj.header + """
              <form method="get" action="register">
-               <input type="text" value="login" name="name" />
-               <input type="password" value="password" name="password" />
-               <input type="password" value="password" name="passwordConfirm" />
-               <button type="submit">Enter</button>
+               <p><input type="text" value="login" name="name" /></p>
+               <p><input type="password" value="password" name="password" /></p>
+               <p><input type="password" value="password" name="passwordConfirm" /></p>
+               <p><button type="submit">Register</button></p>
              </form>
          """ + Proj.footer
 
