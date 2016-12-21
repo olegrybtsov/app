@@ -32,19 +32,7 @@ if __name__ == '__main__':
   # global server config
   cherrypy.config.update({
     'server.socket_host' : '0.0.0.0',
-    'server.socket_port' : 8080,
-  })
-
-  # applicaton config is provided
-  cherrypy.tree.mount(Api(), '/api', {
-    '/' : {
-      'tools.sessions.on' : True,
-      'request.dispatch'  : cherrypy.dispatch.MethodDispatcher(),
-    },
-    '/string' : {
-      'tools.response_headers.on'      : True,
-      'tools.response_headers.headers' : [('Content-Type', 'text/plain')]  
-    }
+    'server.socket_port' : 80,
   })
 
   # applicaton config is provided
