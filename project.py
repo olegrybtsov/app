@@ -7,8 +7,15 @@ import random
 class Proj(object):
 
     auth=False
-    header="""<html><head>DevOps-002</head><body>"""
-    footer="</body></html>"
+    header="""
+    <html>
+        <head>
+            <title>DevOps-002</title>
+        </head>
+        <body>"""
+    footer="""
+        </body>
+    </html>"""
 
     @cherrypy.expose
     def index(self):
@@ -30,9 +37,7 @@ class Proj(object):
 
     @cherrypy.expose
     def regPage(self):
-        return """<html>
-           <head></head>
-           <body>
+        return Proj.header + """
              <form method="get" action="register">
                <input type="text" value name="name" />
                <input type="password" value name="password" />
@@ -40,8 +45,7 @@ class Proj(object):
                <button type="submit">Enter</button>
              </form>
              <a href="./register">Register</a>
-           </body>
-         </html>"""
+         """ + Proj.footer
 
 
 # @cherrypy.expose
