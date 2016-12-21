@@ -19,10 +19,10 @@ class HelloWorld(object):
 
     @cherrypy.expose
     def enter(self, name, password):
-        if name == 'oleg':
-            return 'Hello, ' + name
+        if name == '':
+            return 'Hello, user'
+        return 'Hello, ' + name
         #login=name
-        return 'Hello, user'
 
 #    @cherrypy.expose
 #    def display(self):
