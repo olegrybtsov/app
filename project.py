@@ -20,7 +20,7 @@ class Proj(object):
     def index(self):
         return Proj.header + """
             <p>Login to become a part of DevOps Team</p>
-            <form method="get" action="enter">
+            <form method="get" action="login">
               <p><input type="text" value="login" name="name" /></p>
               <p><input type="password" value="Password" name="password" /></p>
               <p><button type="submit">Login</button></p>
@@ -29,12 +29,12 @@ class Proj(object):
            """ + Proj.footer
 
     @cherrypy.expose
-    def enter(self, name, password):
+    def login(self, name, password):
         if name == '':
             return 'Hello, user'
         return 'Hello, ' + name
 
-    @cherrypy.expose
+    #@cherrypy.expose
     def regPage(self):
         return Proj.header + """
              <form method="get" action="register">
