@@ -31,8 +31,8 @@ class HelloWorld(object):
 if __name__ == '__main__':
     cherrypy.config.update({
         'server.socket_host': '0.0.0.0', 
-        'server.socket_port': 80
-        'tools.sessions.on': 'True',
+        'server.socket_port': 80,
+        'tools.sessions.on': True,
         'tools.sessions.storage_type': "File",
         'tools.sessions.storage_path': 'sessions',
         'tools.sessions.timeout': 10
