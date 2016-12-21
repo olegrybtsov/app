@@ -3,7 +3,7 @@ import cherrypy
 class Proj(object):
 
     auth=False
-    login='login'
+    login="login"
 
     header="""
     <html>
