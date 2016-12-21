@@ -23,11 +23,11 @@ class Proj(object):
     def index(self):
         return Proj.header + """
             <form method="get" action="enter">
-              <input type="text" value="Login" name="name" /><br/>
-              <input type="password" value="Password" name="password" /><br/>
-              <button type="submit">Enter</button>
+              <p><input type="text" value="Login" name="name" /></p>
+              <p><input type="password" value="Password" name="password" /></p>
+              <p><button type="submit">Enter</button></p>
             </form>
-            <a href="./regPage">Register</a>
+            <a href="./regPage">Registration</a>
            """ + Proj.footer
 
     @cherrypy.expose
