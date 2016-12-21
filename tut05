@@ -29,18 +29,12 @@ class HelloWorld(object):
         return cherrypy.session['mystring']
 
 if __name__ == '__main__':
-  # global server config
-  cherrypy.config.update({
-    'server.socket_host' : '0.0.0.0',
-    'server.socket_port' : 80,
-  })
-
-  # applicaton config is provided
-  cherrypy.tree.mount(HelloWorld, '/helloworld', {'/' : {
-    'tools.sessions.on' : True,
-    'tools.json_out.on' : True,
-  }})
-
-  cherrypy.engine.signals.subscribe()
-  cherrypy.engine.start()
-  cherrypy.engine.block()
+    cherrypy.config.update({
+        'server.socket_host': '0.0.0.0', 
+        'server.socket_port': 80
+        'tools.sessions.on': True,
+        'tools.sessions.storage_type': "File",
+        'tools.sessions.storage_path': 'sessions',
+        'tools.sessions.timeout': 10
+        })
+    cherrypy.quickstart(HelloWorld())
