@@ -34,7 +34,7 @@ class Proj(object):
             return 'Hello, user'
         return 'Hello, ' + name
 
-    #@cherrypy.expose
+    @cherrypy.expose
     def regPage(self):
         return Proj.header + """
              <form method="get" action="register">
