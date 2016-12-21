@@ -12,22 +12,23 @@ class Proj(object):
         <head>
             <title>DevOps-002</title>
         </head>
-        <body>"""
+        <body>
+             <div align="center">"""
     footer="""
+            </div>
         </body>
     </html>"""
 
     @cherrypy.expose
     def index(self):
         return Proj.header + """
-          <div align="center">
             <form method="get" action="enter">
               <input type="text" value="Login" name="name" />
               <input type="password" value="Password" name="password" />
               <button type="submit">Enter</button>
             </form>
             <a href="./regPage">Register</a>
-           </div>""" + Proj.footer
+           """ + Proj.footer
 
     @cherrypy.expose
     def enter(self, name, password):
