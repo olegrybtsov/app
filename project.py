@@ -13,12 +13,14 @@ class HelloWorld(object):
         return """<html>
           <head></head>
           <body>
+          <div align="center">
             <form method="get" action="enter">
               <input type="text" value="Login" name="name" />
               <input type="password" value="Password" name="password" />
               <button type="submit">Enter</button>
             </form>
             <a href="./regPage">Register</a>
+           </div>
           </body>
         </html>"""
 
