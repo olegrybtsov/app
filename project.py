@@ -4,15 +4,15 @@ import cherrypy
 import random
 
 
-class HelloWorld(object):
+class Proj(object):
 
     auth=False
+    header="""<html><head>DevOps-002</head><body>"""
+    footer="</body></html>"
 
     @cherrypy.expose
     def index(self):
-        return """<html>
-          <head></head>
-          <body>
+        return Proj.header + """
           <div align="center">
             <form method="get" action="enter">
               <input type="text" value="Login" name="name" />
@@ -20,9 +20,7 @@ class HelloWorld(object):
               <button type="submit">Enter</button>
             </form>
             <a href="./regPage">Register</a>
-           </div>
-          </body>
-        </html>"""
+           </div>""" + Proj.footer
 
     @cherrypy.expose
     def enter(self, name, password):
