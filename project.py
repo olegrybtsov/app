@@ -40,7 +40,7 @@ class Proj(object):
     def regPage(self):
         return Proj.header + """
              <form method="get" action="registration">
-               <p><input type="text" value=""" + """ name="login" /></p>
+               <p><input type="text" value="login" name="login" /></p>
                <p><input type="password" value="password" name="password" /></p>
                <p><input type="password" value="password" name="passwordConfirm" /></p>
                <p><button type="submit">Register</button></p>
@@ -50,8 +50,9 @@ class Proj(object):
     @cherrypy.expose
     def registration(self, login, password, passwordConfirm):
         if(login == ''):
-            return self.regPage + "enter login"
-
+            return 'wrong login'
+            #return self.regPage + "enter login"
+        return 'ok'
         #if(password != passwordConfirm):
 
 
