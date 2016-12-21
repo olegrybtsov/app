@@ -3,7 +3,7 @@ import cherrypy
 class Proj(object):
 
     auth=False
-    name='login'
+    login='login'
 
     header="""
     <html>
@@ -23,7 +23,7 @@ class Proj(object):
         return Proj.header + """
             <p>Login to become a part of DevOps Team</p>
             <form method="get" action="login">
-              <p><input type="text" value="login" name="name" /></p>
+              <p><input type="text" value="login" name="login" /></p>
               <p><input type="password" value="Password" name="password" /></p>
               <p><button type="submit">Login</button></p>
             </form>
@@ -31,16 +31,16 @@ class Proj(object):
            """ + Proj.footer
 
     @cherrypy.expose
-    def login(self, name, password):
-        if name == '':
+    def login(self, login, password):
+        if login == '':
             return 'Hello, user'
-        return 'Hello, ' + name
+        return 'Hello, ' + login
 
     @cherrypy.expose
     def regPage(self):
         return Proj.header + """
              <form method="get" action="registration">
-               <p><input type="text" value=""" + self.name + """ name="name" /></p>
+               <p><input type="text" value=""" + self.login + """ name="login" /></p>
                <p><input type="password" value="password" name="password" /></p>
                <p><input type="password" value="password" name="passwordConfirm" /></p>
                <p><button type="submit">Register</button></p>
