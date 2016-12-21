@@ -50,7 +50,7 @@ class Proj(object):
     @cherrypy.expose
     def registration(self, login, password, passwordConfirm):
         if(login == ''):
-            self.regPage
+            return self.regPage
         return 'ok'
         #if(password != passwordConfirm):
 
