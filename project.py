@@ -57,4 +57,4 @@ if __name__ == '__main__':
         'tools.sessions.storage_path': 'sessions',
         'tools.sessions.timeout': 10
     })
-    cherrypy.quickstart(HelloWorld())
+    cherrypy.quickstart(Proj())
