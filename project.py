@@ -40,7 +40,7 @@ class Proj(object):
     def regPage(self):
         return Proj.header + """
              <form method="get" action="register">
-               <p><input type="text" value=""" + self.login + """ name="name" /></p>
+               <p><input type="text" value='login' name="name" /></p>
                <p><input type="password" value="password" name="password" /></p>
                <p><input type="password" value="password" name="passwordConfirm" /></p>
                <p><button type="submit">Register</button></p>
