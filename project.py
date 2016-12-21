@@ -39,7 +39,7 @@ class Proj(object):
     @cherrypy.expose
     def regPage(self):
         return Proj.header + """
-             <form method="get" action="register">
+             <form method="get" action="registration">
                <p><input type="text" value=""" + self.name + """ name="name" /></p>
                <p><input type="password" value="password" name="password" /></p>
                <p><input type="password" value="password" name="passwordConfirm" /></p>
