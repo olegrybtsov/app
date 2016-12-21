@@ -3,17 +3,22 @@ import string
 import cherrypy
 import random
 
+
 class HelloWorld(object):
+
+    auth=False
+
     @cherrypy.expose
     def index(self):
         return """<html>
           <head></head>
           <body>
             <form method="get" action="enter">
-              <input type="text" value name="name" />
-              <input type="text" value name="password" />
+              <input type="text" value="Login" name="name" />
+              <input type="password" value="Password" name="password" />
               <button type="submit">Enter</button>
             </form>
+            <a href="./regPage">Register</a>
           </body>
         </html>"""
 
@@ -22,9 +27,24 @@ class HelloWorld(object):
         if name == '':
             return 'Hello, user'
         return 'Hello, ' + name
-        #login=name
 
-#    @cherrypy.expose
+    @cherrypy.expose
+    def regPage(self):
+        return """<html>
+           <head></head>
+           <body>
+             <form method="get" action="register">
+               <input type="text" value name="name" />
+               <input type="password" value name="password" />
+               <input type="password" value name="passwordConfirm" />
+               <button type="submit">Enter</button>
+             </form>
+             <a href="./register">Register</a>
+           </body>
+         </html>"""
+
+
+# @cherrypy.expose
 #    def display(self):
 #        return cherrypy.session['mystring']
 
@@ -36,5 +56,5 @@ if __name__ == '__main__':
         'tools.sessions.storage_type': "File",
         'tools.sessions.storage_path': 'sessions',
         'tools.sessions.timeout': 10
-        })
+    })
     cherrypy.quickstart(HelloWorld())
