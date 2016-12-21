@@ -18,8 +18,8 @@ class HelloWorld(object):
 
     @cherrypy.expose
     def enter(self, name=8):
-        login=name
-        return login
+        #login=name
+        return name
 
 #    @cherrypy.expose
 #    def display(self):
