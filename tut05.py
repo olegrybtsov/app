@@ -24,7 +24,7 @@ class HelloWorld(object):
 
     @cherrypy.expose
     def display(self):
-        return cherrypy.session['mystring']
+        return cherrypy.session['mystring' + ' - string']
 
 if __name__ == '__main__':
     cherrypy.config.update({
