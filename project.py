@@ -45,12 +45,12 @@ class Proj(object):
                <p><input type="password" value="password" name="passwordConfirm" /></p>
                <p><button type="submit">Register</button></p>
              </form>
-         """ + Proj.footer
+         """ + self.footer
 
-    @cherrypy.expose
-    def registration(self, login, password, passwordConfirm):
-        if(login == ''):
-            return self.regPage + "enter login"
+#    @cherrypy.expose
+ #   def registration(self, login, password, passwordConfirm):
+  #      if(login == ''):
+   #         return self.regPage + "enter login"
 
         #if(password != passwordConfirm):
 
