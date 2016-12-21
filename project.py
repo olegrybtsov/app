@@ -1,8 +1,4 @@
-import string
-
 import cherrypy
-import random
-
 
 class Proj(object):
 
@@ -25,11 +21,11 @@ class Proj(object):
         return Proj.header + """
             <p>Login to become a part of DevOps Team</p>
             <form method="get" action="enter">
-              <p><input type="text" value="Login" name="name" /></p>
+              <p><input type="text" value="login" name="name" /></p>
               <p><input type="password" value="Password" name="password" /></p>
               <p><button type="submit">Enter</button></p>
             </form>
-            <a href="./regPage">Don't have an account</a>
+            <a href="./regPage">Don't have an account?</a>
            """ + Proj.footer
 
     @cherrypy.expose
@@ -42,12 +38,11 @@ class Proj(object):
     def regPage(self):
         return Proj.header + """
              <form method="get" action="register">
-               <input type="text" value name="name" />
-               <input type="password" value name="password" />
-               <input type="password" value name="passwordConfirm" />
+               <input type="text" value="login" name="name" />
+               <input type="password" value="password" name="password" />
+               <input type="password" value="password" name="passwordConfirm" />
                <button type="submit">Enter</button>
              </form>
-             <a href="./register">Register</a>
          """ + Proj.footer
 
 
