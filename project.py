@@ -11,15 +11,18 @@ class HelloWorld(object):
           <body>
             <form method="get" action="enter">
               <input type="text" value name="name" />
+              <input type="text" value name="password" />
               <button type="submit">Enter</button>
             </form>
           </body>
         </html>"""
 
     @cherrypy.expose
-    def enter(self, name=8):
+    def enter(self, name, password):
+        if name == 'oleg':
+            return 'Hello, ' + name
         #login=name
-        return name
+        return 'Hello, user'
 
 #    @cherrypy.expose
 #    def display(self):
