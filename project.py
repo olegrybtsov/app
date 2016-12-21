@@ -10,14 +10,14 @@ class HelloWorld(object):
           <head></head>
           <body>
             <form method="get" action="enter">
-              <input type="text" name="login" />
+              <input type="text" value name="login" />
               <button type="submit">Enter</button>
             </form>
           </body>
         </html>"""
 
     @cherrypy.expose
-    def enter(self, name):
+    def enter(self, name=8):
         login = name
 
         return login
