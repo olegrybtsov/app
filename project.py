@@ -23,8 +23,8 @@ class Proj(object):
     def index(self):
         return Proj.header + """
             <form method="get" action="enter">
-              <input type="text" value="Login" name="name" />
-              <input type="password" value="Password" name="password" />
+              <input type="text" value="Login" name="name" /><br/>
+              <input type="password" value="Password" name="password" /><br/>
               <button type="submit">Enter</button>
             </form>
             <a href="./regPage">Register</a>
