@@ -18,13 +18,12 @@ class HelloWorld(object):
 
     @cherrypy.expose
     def enter(self, name=8):
-        login = name
-
+        login=name
         return login
 
-    @cherrypy.expose
-    def display(self):
-        return cherrypy.session['mystring']
+#    @cherrypy.expose
+#    def display(self):
+#        return cherrypy.session['mystring']
 
 if __name__ == '__main__':
     cherrypy.config.update({
