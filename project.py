@@ -10,7 +10,7 @@ class HelloWorld(object):
           <head></head>
           <body>
             <form method="get" action="enter">
-              <input type="text" value name="login" />
+              <input type="text" value name="name" />
               <button type="submit">Enter</button>
             </form>
           </body>
