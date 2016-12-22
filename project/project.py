@@ -3,7 +3,7 @@ import os
 import cherrypy
 
 class Proj(object):
-    aut1h = False
+    auth = False
     name = "login"
     users = "users.txt"
 
@@ -42,6 +42,15 @@ class Proj(object):
             name = line.split(':')[0]
             table += name + "<br/>"
         return table
+
+    #def getHeader(self):
+
+     #   login = ''
+
+      #  if self.auth == True:
+
+
+
 
     @cherrypy.expose
     def login(self, login='login', password=''):
@@ -114,7 +123,7 @@ if __name__ == '__main__':
         os.makedirs("sessions")
     cherrypy.config.update({
         'server.socket_host': '0.0.0.0',
-        'server.socket_port': 80,
+        'server.socket_port': 8081,
         'tools.sessions.on': True,
         'tools.sessions.storage_type': "File",
         'tools.sessions.storage_path': 'sessions',
