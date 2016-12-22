@@ -3,7 +3,7 @@ import os
 import cherrypy
 
 class Proj(object):
-    auth = False
+    aut1h = False
     name = "login"
     users = "users.txt"
 
