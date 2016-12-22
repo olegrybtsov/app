@@ -69,7 +69,7 @@ class Proj(object):
         self.name = login
 
         if len(login) < 4 or login == 'login':
-            error = 'enter correct login'
+            error = 'enter correct login (4 chars min)'
             self.name = 'login'
         elif ":" in login:
             error = "login can't contain ':'"
@@ -81,7 +81,7 @@ class Proj(object):
             file = open(self.users, 'w')
             file.write(login + ":" + password)
             file.close()
-            return self.header + """<p><h2>Now you can <a href="./">login</a></h2></p>"""
+            return self.getHeader() + """<p><h2>Now you can <a href="./">login</a></h2></p>"""
 
         return self.getHeader() + """
             <p><h2>Create your account</h2></p>
