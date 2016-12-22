@@ -61,6 +61,8 @@ class Proj(object):
                     else:
                         error = "wrong password"
                     break
+        else:
+            error = 'no such user'
 
         return self.header + """
                    <p>Login to become a part of DevOps Team</p>
