@@ -1,12 +1,13 @@
 import os
 import cherrypy
-
+import pymysql
 
 class Proj(object):
 
     auth = False
     name = "login"
     users = "users.txt"
+    DB_ADDRESS = "mysql.cqd0v9wt7gjv.us-east-1.rds.amazonaws.com"
 
     footer = """
             </div>
@@ -15,6 +16,8 @@ class Proj(object):
 
     @cherrypy.expose
     def index(self):
+        return self.makeQuery("SHOW DATABASES;")
+
         if self.auth:
             return self.getHeader() + "<p><h2>Group list</h2></p>" + self.print() + self.footer
 
@@ -46,6 +49,9 @@ class Proj(object):
                     else:
                         error = "wrong password"
                     break
+
+        else:
+            error = 'no users'
 
 
         return self.getHeader() + """
@@ -79,10 +85,10 @@ class Proj(object):
         elif password != passwordConfirm:
             error = "passwords doesn't match"
         else:
-            file = open(self.users, 'w')
-            file.write(login + ":" + password)
+            file = open(self.users, 'a')
+            file.write(login + ":" + password + ":\n")
             file.close()
-            return self.getHeader() + """<p><h2>Now you can <a href="./">login</a></h2></p>"""
+            return self.getHeader() + """<p><h2>Now you can <a href="./login">login</a></h2></p>"""
 
         return self.getHeader() + """
             <p><h2>Create your account</h2></p>
@@ -101,15 +107,21 @@ class Proj(object):
         name = ''
         for line in file:
             name = line.split(':')[0]
-            table += name + "<br/>"
+            if name != '':
+                table += name + "<br/>"
         return table
+
+    def ifUserExists(self, login=''):
+        return
 
     def getHeader(self):
 
         logout = ''
+        image = ''
 
         if self.auth == True:
             logout = """<a href="./logout">Logout</a>"""
+            image = """<>"""
 
         return """
         <html>
@@ -119,13 +131,25 @@ class Proj(object):
             <a href="./">HOME</a>   """ + logout + """
         </head>
         <body>
+            <div style="height:200px width:800px">
 
-            <div style="height:100px"></div>
+            </div>
              <div align="center">"""
+
+    def makeQuery(self, query=''):
+        string = ''
+        conn = pymysql.connect(host=self.DB_ADDRESS, user="root", passwd="12121986", db="app")
+        cur = conn.cursor()
+        cur.execute(query)
+        string = cur.fetchone()
+        cur.close()
+        conn.close()
+        return string
 
 if __name__ == '__main__':
     if not os.path.exists("sessions"):
         os.makedirs("sessions")
+
     cherrypy.config.update({
         'server.socket_host': '0.0.0.0',
         'server.socket_port': 8081,
