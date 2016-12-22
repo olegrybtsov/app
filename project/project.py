@@ -1,8 +1,9 @@
 import os
-
 import cherrypy
 
+
 class Proj(object):
+
     auth = False
     name = "login"
     users = "users.txt"
