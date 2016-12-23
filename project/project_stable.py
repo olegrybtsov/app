@@ -35,18 +35,17 @@ class Proj(object):
             error = 'enter password'
 
         elif os.path.exists(self.users):
-            if self.userExist(self.name):
-                file = open(self.users, 'r')
+            file = open(self.users, 'r')
 
-                for line in file:
-                    data = line.split(':')
-                    if login == data[0]:
-                        if password == data[1]:
-                            self.auth = True
-                            return self.getHeader() + "<p><h2>Wellcome, " + self.name + "!</h2><p>" + self.footer
-                        else:
-                            error = "wrong password"
-                        break
+            for line in file:
+                data = line.split(':')
+                if login == data[0]:
+                    if password == data[1]:
+                        self.auth = True
+                        return self.getHeader() + "<p><h2>Wellcome, " + self.name + "!</h2><p>" + self.footer
+                    else:
+                        error = "wrong password"
+                    break
 
 
         return self.getHeader() + """
@@ -79,13 +78,11 @@ class Proj(object):
             error = 'enter correct password'
         elif password != passwordConfirm:
             error = "passwords doesn't match"
-        elif self.userExist(login):
-            error = "user exists"
         else:
-            file = open(self.users, 'a')
-            file.write(login + ":" + password + ":\n")
+            file = open(self.users, 'w')
+            file.write(login + ":" + password)
             file.close()
-            return self.getHeader() + """<p><h2>Now you can <a href="./login">login</a></h2></p>"""
+            return self.getHeader() + """<p><h2>Now you can <a href="./">login</a></h2></p>"""
 
         return self.getHeader() + """
             <p><h2>Create your account</h2></p>
@@ -106,16 +103,6 @@ class Proj(object):
             name = line.split(':')[0]
             table += name + "<br/>"
         return table
-
-    def userExist(self, name=''):
-        file = open(self.users, 'r')
-
-        for line in file:
-            data = line.split(':')
-            if name == data[0]:
-                return True
-
-        return False
 
     def getHeader(self):
 
