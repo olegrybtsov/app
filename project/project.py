@@ -129,7 +129,7 @@ class Proj(object):
         <head>
             <font size=4>
             <title>DevOps-002</title>
-            <a href="./">HOME</a>   """ + logout + """
+            <a href="./">HOME</a>   new_ver   """ + logout + """
         </head>
         <body>
             <div style="height:100px"></div>
