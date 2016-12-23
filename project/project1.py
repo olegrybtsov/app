@@ -1,12 +1,13 @@
 import os
 import cherrypy
-
+import pymysql
 
 class Proj(object):
 
     auth = False
     name = "login"
     users = "users.txt"
+    DB_ADDRESS = "mysql.cqd0v9wt7gjv.us-east-1.rds.amazonaws.com"
 
     footer = """
             </div>
@@ -15,6 +16,12 @@ class Proj(object):
 
     @cherrypy.expose
     def index(self):
+
+        return self.getUser('oleg')
+
+        for name in users:
+            return name
+
         if self.auth:
             return self.getHeader() + "<p><h2>Group list</h2></p>" + self.print() + self.footer
 
@@ -46,6 +53,9 @@ class Proj(object):
                     else:
                         error = "wrong password"
                     break
+
+        else:
+            error = 'no users'
 
 
         return self.getHeader() + """
@@ -79,10 +89,15 @@ class Proj(object):
         elif password != passwordConfirm:
             error = "passwords doesn't match"
         else:
-            file = open(self.users, 'w')
-            file.write(login + ":" + password)
-            file.close()
-            return self.getHeader() + """<p><h2>Now you can <a href="./">login</a></h2></p>"""
+#            file = open(self.users, 'a')
+#            file.write(login + ":" + password + ":\n")
+#            file.close()
+            try:
+                self.insertDB("insert into user values ('" + login + "','" + password + "')")
+            except BaseException:
+                error = "user exists"
+            else:
+                return self.getHeader() + """<p><h2>Now you can <a href="./login">login</a></h2></p>""" + self.footer
 
         return self.getHeader() + """
             <p><h2>Create your account</h2></p>
@@ -101,15 +116,24 @@ class Proj(object):
         name = ''
         for line in file:
             name = line.split(':')[0]
-            table += name + "<br/>"
+            if name != '':
+                table += name + "<br/>"
         return table
+
+    def ifUserExists(self, base=[], login=''):
+        for name in base:
+            if login == name:
+                return True
+        return False
 
     def getHeader(self):
 
         logout = ''
+        image = ''
 
         if self.auth == True:
             logout = """<a href="./logout">Logout</a>"""
+            image = """<>"""
 
         return """
         <html>
@@ -119,12 +143,44 @@ class Proj(object):
             <a href="./">HOME</a>   """ + logout + """
         </head>
         <body>
-            <div style="height:100px"></div>
+            <div style="height:200px width:800px">
+
+            </div>
              <div align="center">"""
+
+    def insertDB(self, query=''):
+        conn = pymysql.connect(host=self.DB_ADDRESS, user="root", passwd="12121986", db="app")
+        cur = conn.cursor()
+        cur.execute(query)
+        cur.close()
+        conn.commit()
+        conn.close()
+
+    def getUser(self, user=''):
+        conn = pymysql.connect(host=self.DB_ADDRESS, user="root", passwd="12121986", db="app")
+        cur = conn.cursor()
+        output = ''
+        cur.execute("select login from user")
+
+        for name in cur:
+
+            if name == user:
+                #cur.execute("select password from user where name is " + user)
+                #output = cur[0]
+                return "yes"
+                output = "yes"
+
+            else:
+                output = "no"
+        cur.close()
+        conn.commit()
+        conn.close()
+        return output
 
 if __name__ == '__main__':
     if not os.path.exists("sessions"):
         os.makedirs("sessions")
+
     cherrypy.config.update({
         'server.socket_host': '0.0.0.0',
         'server.socket_port': 8081,
